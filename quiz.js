@@ -1,24 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
- //Ensures the script after the HTML document is fully loaded
+  // Ensures the script runs after the HTML document is fully loaded
 
- function checkAnswer(){
-  // This function checks if the user's selected answer is correct
-  const correctAnswer = "4"; // The correct answer for the quiz question
-  const selectedOption = document.querySelector('input[name="quiz"]:checked'); //Selects the checked radio button with name="quiz"
-  let userAnswer = ""; //Initializes userAnswer to an empty string 
-  if (selectedOption) {
-   userAnswer = selectedOption.value; // If an option is selected, get its value
+  function checkAnswer() {
+    // This function checks if the user's selected answer is correct
+
+    const correctAnswer = "4";
+    // Stores the correct answer for the quiz
+
+    const selectedOption = document.querySelector('input[name="quiz"]:checked');
+    // Selects the checked radio button with name="quiz"
+
+    let userAnswer = "";
+    // Initializes userAnswer to an empty string
+
+    if (selectedOption) {
+      userAnswer = selectedOption.value;
+      // Gets the value of the selected radio button
+    }
+
+    const feedback = document.getElementById('feedback');
+    // Selects the feedback element to display the result
+
+    if (userAnswer === correctAnswer) {
+      feedback.textContent = "Correct! Well done.";
+      // Displays success message if the answer is correct
+    } else {
+      feedback.textContent = "That's incorrect. Try again!";
+      // Displays error message if the answer is incorrect
+    }
   }
-  const feedback = document.getElementById('feedback'); // a variable for storing the message of whether correct or wrong
-  if (userAnswer == correctAnswer) {
-   feedback.textContent = 'Correct! Well done.'; // Displays a success message
-  } else {
-   feedback.textContent = 'Incorrect. Please try again.'; // Displays an error message
-  }
- }
 
- const submitBtn = document.getElementById('submit-answer'); // Selects the submit button by its ID
+  const submitBtn = document.getElementById('submit-answer');
+  // Selects the submit button by its ID
 
- submitBtn.addEventListener('click', checkAnswer);
- // Adds a click event listener to the button to call checkAnswer function when clicked
+  submitBtn.addEventListener('click', checkAnswer);
+  // Adds a click event listener to the button to call checkAnswer when clicked
 });
